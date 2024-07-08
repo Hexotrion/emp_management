@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> employee management system</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+       <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item ">
+          <h1 class="text-white">Update Employee</h1>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+
+
+
+       
+    </nav>
+    <br>
+    <br>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-centre card">
+                <div class="card-body">
+                    <form th:action="@{/employees/{id} (id=${employee.id})}" th:object="${employee}" method="POST">
+
+                        <div class="form-group">
+                            <label> student first name </label>
+                            <input type="text" name="firstName" th:field="*{firstName}" class="form-control"
+                                placeholder="enter employee first name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label> student last name </label>
+                            <input type="text" name="lastName" th:field="*{lastName}" class="form-control"
+                                placeholder="enter employee last name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label> student email </label>
+                            <input type="text" name="email" th:field="*{email}" class="form-control"
+                                placeholder="enter employee email" />
+                        </div>
+                        <div class="form-group">
+
+
+
+                            <label for="profile-select">profile:</label>
+
+                            <select name="job_title" th:field="*{job_title}" id="profile-select">
+                                <option  th:field="*{job_title}"  value="">--Please choose an option--</option>
+                                <option  th:field="*{job_title}"  value="web developer">web developer</option>
+                                <option  th:field="*{job_title}"  value="python developer">python developer</option>
+                                <option  th:field="*{job_title}"  value="java developer">java developer</option>
+                                <option  th:field="*{job_title}"  value=".net developer">.net developer</option>
+                                <option  th:field="*{job_title}"  value="human resource">human resource</option>
+                                <option  th:field="*{job_title}"  value="marketing">marketing</option>
+                            </select>
+                        </div>
+                        
+                        
+                        
+                         <label for="department-select">department:</label>
+                         <div class="form-group"  th:each="department : ${departments}">
+                           
+					                              
+					             <div>
+					                <label>
+					                    <input type="radio" th:field="*{department.d_id}" th:value="${department.d_id}" required  />
+					                    <span th:text="${department.d_Name}"></span>
+					                </label>
+					            </div>
+					       
+                            
+                        </div>
+
+                        
+
+
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary mx-2">submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Employee Management System</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	  crossorigin="anonymous" >
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="/logout">Logout</a>
+  
+  
+    <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item ">
+          <h1 class="text-white">List Employee</h1>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+	<div class="container">
+		<div class="col-md-12 text-center">
+			<h1></h1>
+		</div>
+		
+		<div class = "row justify-content-end">
+		<div class ="col-sm-2">
+		  <a th:href  = "@{/employees/new}" class = "btn btn-success  px-2 btn-sm mb-2 "> Add Employee</a>
+		</div></div>
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr><th>s_no</th>
+				<!-- 	<th>Id</th> -->
+					<th> first Name</th>
+					<th> last Name</th>
+					<th>email</th>
+					<th>job</th>
+					<th>department</th>
+					<th>action</th>
+				</tr>
+			</thead>
+			<tbody  >
+				<tr th:each="employees, counter: ${employees}" >
+				<td><span th:text="${counter.count}"></span>
+					<!-- <td th:text="${employees.id}"></td> -->
+					<td th:text="${employees.firstName}"></td>
+					<td th:text="${employees.lastName}"></td>
+					<td th:text="${employees.email}"></td>
+					<td th:text="${employees.job_title}"></td>
+					<td th:text="${employees.department.d_Name}"></td>
+                    <td  class="text-center">
+                      <a th:href="@{/employees/edit/{id}(id=${employees.id})}"  class ="btn btn-primary px-4 ml-2 ">edit
+                      </a>
+                      <a th:href="@{/employees/delete/{id}(id=${employees.id})}"  class ="btn btn-danger px-3 ml-3">delete</a>
+                      </td>
+				</tr>
+
+			</tbody>
+
+
+
+
+
+
+		</table>
+
+	</div>
+</body>
+</html>
